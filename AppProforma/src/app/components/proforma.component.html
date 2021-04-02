@@ -1,0 +1,179 @@
+<div class="row" wfd-id="5">
+  <div class="col-md-5 order-md-2 mb-4" wfd-id="68">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted" wfd-id="88">P-R-O-F-O-R-M-A</span>
+      <span class="badge badge-secondary badge-pill" wfd-id="87">($)</span>
+    </h4>
+    <form class="card p-2" wfd-id="69">
+      <ul class="list-group mb-3" wfd-id="72">
+        <!-- SERVICIOS -->
+        <li *ngFor="let servicios of objProforma ; index as indexServicios"
+          class="list-group-item d-flex justify-content-between lh-condensed" [attr.id]="'servicio-'+indexServicios">
+          <div>
+            <h6 class="my-0">{{ servicios.categoria }}</h6>
+            <small class="text-muted">{{ servicios.descripcion }}</small>
+            <select [(ngModel)]="respuestas[indexServicios]" [ngModelOptions]="{standalone: true}" class="custom-select d-block w-100" required="">
+              <option *ngFor="let plan of servicios.planes ; let indexPlanes = index" [ngValue]="indexPlanes">{{ plan }}
+              </option>
+            </select>
+            <div class="invalid-feedback">
+              Selección inválida.
+            </div>
+          </div>
+          <span class="text-muted" wfd-id="79">{{ servicios.precios[respuestas[indexServicios]] }}</span>
+        </li>
+      </ul>
+      <div class="input-group" wfd-id="70">
+        <input type="text" class="form-control" placeholder="{{ total }}" wfd-id="106" disabled>
+        <div class="input-group-append" wfd-id="71">
+          <button type="button" (click)="calcularTotal();" class="btn btn-secondary" wfd-id="108">Cotizar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-7 order-md-1" wfd-id="6">
+    <h4 class="mb-3">DIRECCIÓN DE PAGO</h4>
+    <form class="needs-validation" novalidate="" wfd-id="7">
+      <div class="row" wfd-id="61">
+        <div class="col-md-6 mb-3" wfd-id="65">
+          <label for="firstName" wfd-id="67">Nombre</label>
+          <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" wfd-id="105">
+          <div class="invalid-feedback" wfd-id="66">
+            Valid first name is required.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3" wfd-id="62">
+          <label for="lastName" wfd-id="64">Apellidos</label>
+          <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" wfd-id="104">
+          <div class="invalid-feedback" wfd-id="63">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3" wfd-id="55">
+        <label for="username" wfd-id="60">Nombre de Usuario</label>
+        <div class="input-group" wfd-id="56">
+          <div class="input-group-prepend" wfd-id="58">
+            <span class="input-group-text" wfd-id="59">@</span>
+            <input type="text" class="form-control" id="username" placeholder="Username" required="" wfd-id="103">
+            <div class="invalid-feedback" style="width: 100%;" wfd-id="57">
+              Your username is required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3" wfd-id="51">
+        <label for="email" wfd-id="53">Email <span class="text-muted" wfd-id="54">(Optional)</span></label>
+        <input type="email" class="form-control" id="email" placeholder="you@example.com" wfd-id="102">
+        <div class="invalid-feedback" wfd-id="52">
+          Please enter a valid email address for shipping updates.
+        </div>
+      </div>
+
+      <div class="mb-3" wfd-id="48">
+        <label for="address" wfd-id="50">Dirección</label>
+        <input type="text" class="form-control" id="address" required="" wfd-id="101">
+        <div class="invalid-feedback" wfd-id="49">
+          Please enter your shipping address.
+        </div>
+      </div>
+
+      <div class="row" wfd-id="33">
+        <div class="col-md-5 mb-3" wfd-id="41">
+          <label for="country" wfd-id="44">País</label>
+          <select class="custom-select d-block w-100" id="country" required="" wfd-id="43">
+            <option value="">Seleccionar...</option>
+            <option>Ecuador</option>
+          </select>
+          <div class="invalid-feedback" wfd-id="42">
+            Please select a valid country.
+          </div>
+        </div>
+        <div class="col-md-4 mb-3" wfd-id="37">
+          <label for="state" wfd-id="40">Provincia</label>
+          <select class="custom-select d-block w-100" id="state" required="" wfd-id="39">
+            <option value="">Seleccionar...</option>
+            <option>Loja</option>
+          </select>
+          <div class="invalid-feedback" wfd-id="38">
+            Please provide a valid province.
+          </div>
+        </div>
+        <div class="col-md-3 mb-3" wfd-id="34">
+          <label for="zip" wfd-id="36">Código Postal</label>
+          <input type="text" class="form-control" id="zip" placeholder="" required="" wfd-id="99">
+          <div class="invalid-feedback" wfd-id="35">
+            Zip code required.
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <div class="custom-control custom-checkbox" wfd-id="31">
+        <input type="checkbox" class="custom-control-input" id="same-address" wfd-id="98">
+        <label class="custom-control-label" for="same-address" wfd-id="32">Mi dirección de entrega es la misma que mi
+          dirección de pago</label>
+      </div>
+      <div class="custom-control custom-checkbox" wfd-id="29">
+        <input type="checkbox" class="custom-control-input" id="save-info" wfd-id="97">
+        <label class="custom-control-label" for="save-info" wfd-id="30">Guardar esta información de pago para la
+          posterioridad</label>
+      </div>
+      <hr class="mb-4">
+
+      <h4 class="mb-3">PAGO</h4>
+
+      <div class="d-block my-3" wfd-id="22">
+        <div class="custom-control custom-radio" wfd-id="27">
+          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required=""
+            wfd-id="96">
+          <label class="custom-control-label" for="credit" wfd-id="28">Tarjeta de Crédito</label>
+        </div>
+        <div class="custom-control custom-radio" wfd-id="25">
+          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="95">
+          <label class="custom-control-label" for="debit" wfd-id="26">Tarjeta de Débito</label>
+        </div>
+        <div class="custom-control custom-radio" wfd-id="23">
+          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="94">
+          <label class="custom-control-label" for="paypal" wfd-id="24">PayPal</label>
+        </div>
+      </div>
+      <div class="row" wfd-id="15">
+        <div class="col-md-6 mb-3" wfd-id="19">
+          <label for="cc-name" wfd-id="21">Nombre de la tarjeta</label>
+          <input type="text" class="form-control" id="cc-name" placeholder="" required="" wfd-id="93">
+          <small class="text-muted">Nombre completo tal como se muestra en la tarjeta</small>
+          <div class="invalid-feedback" wfd-id="20">
+            Name on card is required
+          </div>
+        </div>
+        <div class="col-md-6 mb-3" wfd-id="16">
+          <label for="cc-number" wfd-id="18">Número de la tarjeta de crédito</label>
+          <input type="text" class="form-control" id="cc-number" placeholder="" required="" wfd-id="92">
+          <div class="invalid-feedback" wfd-id="17">
+            Credit card number is required
+          </div>
+        </div>
+      </div>
+      <div class="row" wfd-id="8">
+        <div class="col-md-3 mb-3" wfd-id="12">
+          <label for="cc-expiration" wfd-id="14">Expiración</label>
+          <input type="text" class="form-control" id="cc-expiration" placeholder="" required="" wfd-id="91">
+          <div class="invalid-feedback" wfd-id="13">
+            Expiration date required
+          </div>
+        </div>
+        <div class="col-md-3 mb-3" wfd-id="9">
+          <label for="cc-cvv" wfd-id="11">CVV</label>
+          <input type="text" class="form-control" id="cc-cvv" placeholder="" required="" wfd-id="90">
+          <div class="invalid-feedback" wfd-id="10">
+            Security code required
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <button (click)="guardar();" class="btn btn-primary btn-lg btn-block" type="button" wfd-id="107">Continuar con el Pago</button>
+    </form>
+  </div>
+</div>
